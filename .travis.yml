@@ -7,7 +7,7 @@ env:
   global:
   - GIT_NAME: "'VueJS auto deploy'"
   - GIT_EMAIL: travis@example.com
-  - GH_REF: git@github.com/mimischi/vuejs-playground.git
+  - GH_REF: git@github.com:mimischi/vuejs-playground.git
 
 before_script:
 - git config user.name "${GIT_NAME}"
