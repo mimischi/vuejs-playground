@@ -2,13 +2,13 @@ env:
   global:
   - GIT_NAME: "'VueJS auto deploy'"
   - GIT_EMAIL: travis@example.com
-  - GH_REF: git@github.com:mimischi/vuejs-playground.git
+  - GH_REF: https://{$GITHUB_TOKEN}@github.com/mimischi/vuejs-playground.git
 language: python
 before_script:
-- openssl aes-256-cbc -K $encrypted_4ab30e844c77_key -iv $encrypted_4ab30e844c77_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
-- chmod 600 .travisci/deploy-key
-- eval `ssh-agent -s`
-- ssh-add .travisci/deploy-key
+# - openssl aes-256-cbc -K $encrypted_4ab30e844c77_key -iv $encrypted_4ab30e844c77_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
+# - chmod 600 .travisci/deploy-key
+# - eval `ssh-agent -s`
+# - ssh-add .travisci/deploy-key
 - git config user.name "Travis Publisher"
 - git config user.email "travis@example.com"
 - git remote add gh-token "${GH_REF}";
