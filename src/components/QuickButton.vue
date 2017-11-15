@@ -1,5 +1,4 @@
 <template lang="pug">
-  div
     button(:class='computedClass' @click='toggleButton' :disabled='disabled') {{name}}
 </template>
 
@@ -27,7 +26,11 @@ export default {
   },
   methods: {
     toggleButton: function (event) {
-      this.$emit('toggleClock')
+      if (this.name === 'Pause' || this.name === 'Unpause') {
+        this.$emit('pauseClock')
+      } else {
+        this.$emit('toggleClock')
+      }
     }
   }
 }

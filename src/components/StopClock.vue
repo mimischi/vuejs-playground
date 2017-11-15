@@ -30,12 +30,10 @@ export default {
   },
   mounted: function () {
     this.startDate = Math.trunc((new Date().getTime() / 1000))
-    this.clockInterval = window.setInterval(() => {
-      this.duration = Math.trunc((new Date()).getTime() / 1000) - this.startDate
-    }, 1000)
+    this.createClock()
   },
   beforeDestroy: function () {
-    clearInterval(this.clockInterval)
+    this.destroyClock()
   },
   filters: {
     doubleDigits: function (value) {
@@ -46,9 +44,13 @@ export default {
     }
   },
   methods: {
-    formatTime: function (number) {
-      number = Math.trunc(number)
-      return number <= 9 ? '0' + number : number
+    createClock: function () {
+      this.clockInterval = window.setInterval(() => {
+        this.duration = Math.trunc((new Date()).getTime() / 1000) - this.startDate
+      }, 1000)
+    },
+    destroyClock: function () {
+      clearInterval(this.clockInterval)
     }
   },
   computed: {
