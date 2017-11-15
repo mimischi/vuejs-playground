@@ -2,19 +2,17 @@ cache:
   yarn: true
   directories:
   - node_modules
-
 env:
   global:
   - GIT_NAME: "'VueJS auto deploy'"
   - GIT_EMAIL: travis@example.com
   - GH_REF: git@github.com:mimischi/vuejs-playground.git
-
 before_script:
 - git config user.name "${GIT_NAME}"
 - git config user.email "${GIT_EMAIL}"
 before_install:
 - eval "$(ssh-agent -s)"
-- openssl aes-256-cbc -K $encrypted_4ab30e844c77_key -iv $encrypted_4ab30e844c77_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
+- openssl aes-256-cbc -K $encrypted_0c975805c87e_key -iv $encrypted_0c975805c87e_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
 - chmod 600 .travisci/deploy-key
 - ssh-add .travisci/deploy-key
 - git remote set-url origin "${GH_REF}"
