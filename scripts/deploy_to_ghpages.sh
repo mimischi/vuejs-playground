@@ -2,6 +2,7 @@
 set -o errexit
 
 # Build static files with yarn
+yarn install
 yarn run build
 
 # Remove `.gitignore`, otherwise the `dist/` folder will be ignored
