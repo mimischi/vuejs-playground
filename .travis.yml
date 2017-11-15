@@ -2,16 +2,21 @@ env:
   global:
   - GIT_NAME: "'VueJS auto deploy'"
   - GIT_EMAIL: travis@example.com
-  - GH_REF: https://{$GITHUB_TOKEN}@github.com/mimischi/vuejs-playground.git
-language: python
+  - GH_REF: git@github.com/mimischi/vuejs-playground.git
 before_script:
-# - openssl aes-256-cbc -K $encrypted_4ab30e844c77_key -iv $encrypted_4ab30e844c77_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
-# - chmod 600 .travisci/deploy-key
-# - eval `ssh-agent -s`
-# - ssh-add .travisci/deploy-key
 - git config user.name "Travis Publisher"
 - git config user.email "travis@example.com"
-- git remote add gh-token "${GH_REF}";
 script:
 - if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
-- bash scripts/deploy_to_ghpages.sh
+- yarn install
+- yarn build
+after_success:
+- eval "$(ssh-agent -s)"
+- openssl aes-256-cbc -K $encrypted_4ab30e844c77_key -iv $encrypted_4ab30e844c77_iv -in .travisci/deploy-key.enc -out .travisci/deploy-key -d
+- chmod 600 .travisci/deploy-key
+- ssh-add .travisci/deploy-key
+- git remote add gh-token "${GH_REF}"
+- rm -rf .gitignore
+- git add dist/
+- git commit -am "Deploy to Github Pages"
+- git subtree push --prefix dist origin gh-pages
