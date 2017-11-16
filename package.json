@@ -1,14 +1,14 @@
 {
-  "name": "clock-vue",
+  "name": "vuejs-playground",
   "version": "1.0.0",
-  "description": "Toying around with VueJS for Clock",
+  "description": "Toying around with VueJS",
   "author": "Michael Gecht <gecht.m@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "nodemon --watch index.js --watch config/dev.env.js --exec \"yarn run dev\"",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test": "npm run unit",
+    "test": "yarn run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "build": "node build/build.js"
   },
