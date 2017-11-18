@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import Buefy from 'buefy'
-import 'buefy/lib/buefy.css'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.css'
 import App from './App'
 import router from './router'
 
-Vue.use(Buefy)
+Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

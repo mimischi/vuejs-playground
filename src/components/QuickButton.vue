@@ -1,5 +1,6 @@
 <template lang="pug">
-    button(:class='computedClass' @click='toggleButton' :disabled='disabled') {{name}}
+    v-btn(block dark :class='computedClass' @click='toggleButton' :disabled='disabled') {{name}}
+      v-icon(dark right) {{icon}}
 </template>
 
 <script>
@@ -11,6 +12,10 @@ export default {
       default: ''
     },
     classNames: {
+      type: String,
+      default: ''
+    },
+    icon: {
       type: String,
       default: ''
     },

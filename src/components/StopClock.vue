@@ -1,15 +1,5 @@
 <template lang="pug">
-  div(class='tile is-ancestor')
-    div(class='tile is-parent')
-      article(class='tile is-child is-2 has-text-centered notification is-info box')
-        p(class='title') {{ hours | doubleDigits }}
-        p(class='subtitle') hours
-      article(class='tile is-child is-2 has-text-centered notification is-info box')
-        p(class='title') {{ minutes | doubleDigits }}
-        p(class='subtitle') minutes
-      article(class='tile is-child is-2 has-text-centered notification is-info box')
-        p(class='title') {{ seconds | doubleDigits }}
-        p(class='subtitle') seconds
+  div  {{ hours | doubleDigits }}:{{ minutes | doubleDigits }}:{{ seconds | doubleDigits }}
 </template>
 
 <script>
