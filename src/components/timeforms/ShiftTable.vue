@@ -1,9 +1,18 @@
-<template lang="pug">
-  v-data-table(:headers="headers", :items="items", class="elevation-1")
-    template(slot="items" slot-scope="props")
-      td(class="text-cs-right") {{ props.item.start }}
-      td(class="text-cs-right") {{ props.item.stop }}
-      td(class="text-cs-right") {{ props.item.contract }}
+<template lang='pug'>
+  v-data-table(
+    :headers='headers'
+    :items='items'
+    v-model='selected'
+    item-key='id'
+    select-all
+    class='elevation-1'
+    )
+    template(slot='items' slot-scope='props')
+      td
+        v-checkbox(primary hide-details v-model='props.selected')
+      td(class='text-cs-right') {{ props.item.start }}
+      td(class='text-cs-right') {{ props.item.stop }}
+      td(class='text-cs-right') {{ props.item.contract | filterValue }}
 </template>
 
 <script>
@@ -11,6 +20,7 @@ export default {
   name: 'ShiftTable',
   data () {
     return {
+      selected: [],
       headers: [
         {
           text: 'Start time',
@@ -31,17 +41,22 @@ export default {
       items: [
         {
           id: 1,
-          start: "10 Nov 2017 08:30:15 GMT",
-          stop: "10 Nov 2017 12:15:00 GMT",
-          contract: "Uni"
+          start: '10 Nov 2017 08:30:15 GMT',
+          stop: '10 Nov 2017 12:15:00 GMT',
+          contract: 'Uni'
         },
         {
-          id: 1,
-          start: "11 Nov 2017 12:00:00 GMT",
-          stop: "11 Nov 2017 16:15:12 GMT",
-          contract: ""
+          id: 2,
+          start: '11 Nov 2017 12:00:00 GMT',
+          stop: '11 Nov 2017 16:15:12 GMT',
+          contract: ''
         }
       ]
+    }
+  },
+  filters: {
+    filterValue: function (value) {
+      return value || '-'
     }
   }
 }
