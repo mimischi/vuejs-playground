@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  v-layout(column align-center)
     v-card(color='grey lighten-4' flat)
       v-container(fluid)
         v-layout(row wrap)
@@ -11,11 +11,13 @@
               quick-button(name='Start', icon='play_arrow', :disabled='runningShift', classNames='primary', v-on:toggleClock='toggleClock')
             div(v-if='runningShift')
               quick-button(name='Stop', icon='stop', :disabled='!runningShift', classNames='primary', v-on:toggleClock='toggleClock')
+    shift-table
 </template>
 
 <script>
 import StopClock from './StopClock'
 import QuickButton from './QuickButton'
+import ShiftTable from '../timeforms/ShiftTable'
 
 export default {
   name: 'QuickActions',
@@ -27,7 +29,8 @@ export default {
   },
   components: {
     StopClock,
-    QuickButton
+    QuickButton,
+    ShiftTable
   },
   methods: {
     toggleClock: function () {
