@@ -6,7 +6,7 @@
       v-toolbar-side-icon(@click.stop="drawer = !drawer")
       v-toolbar-title(v-text="title")
     v-content
-      v-container(fluid fill-height)
+      v-container(fluid)
         v-fade-transition(mode="out-in")
           router-view
     v-footer(color="blue" app)
