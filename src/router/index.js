@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import QuickActions from '@/components/quickactions/QuickActions'
-import InputForm from '@/components/timeforms/InputForm'
+import InputBody from '@/components/timeforms/InputBody'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: QuickActions
     },
     {
-      path: '/add',
-      name: 'Input',
-      component: InputForm
+      path: '/list',
+      name: 'List',
+      component: InputBody
     },
     {
       path: '*',

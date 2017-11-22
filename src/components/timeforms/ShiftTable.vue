@@ -18,42 +18,11 @@
 <script>
 export default {
   name: 'ShiftTable',
-  data () {
-    return {
-      selected: [],
-      headers: [
-        {
-          text: 'Start time',
-          align: 'left',
-          value: 'start'
-        },
-        {
-          text: 'Stop time',
-          align: 'left',
-          value: 'stop'
-        },
-        {
-          text: 'Contract',
-          align: 'left',
-          value: 'contract'
-        }
-      ],
-      items: [
-        {
-          id: 1,
-          start: '10 Nov 2017 08:30:15 GMT',
-          stop: '10 Nov 2017 12:15:00 GMT',
-          contract: 'Uni'
-        },
-        {
-          id: 2,
-          start: '11 Nov 2017 12:00:00 GMT',
-          stop: '11 Nov 2017 16:15:12 GMT',
-          contract: ''
-        }
-      ]
-    }
-  },
+  props: [
+    'headers',
+    'items',
+    'selected'
+  ],
   filters: {
     filterValue: function (value) {
       return value || '-'

@@ -11,7 +11,6 @@
               quick-button(name='Start', icon='play_arrow', :disabled='runningShift', classNames='primary', v-on:toggleClock='toggleClock')
             div(v-if='runningShift')
               quick-button(name='Stop', icon='stop', :disabled='!runningShift', classNames='primary', v-on:toggleClock='toggleClock')
-    shift-table
 </template>
 
 <script>
