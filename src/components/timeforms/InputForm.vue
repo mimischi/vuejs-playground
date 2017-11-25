@@ -66,6 +66,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
         v-time-picker(
           v-model="startTime"
           format="24hr"
+          :allowed-minutes="allowedTimes.minutes"
           autosave
         )
   v-layout(row)
@@ -134,6 +135,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
         v-time-picker(
           v-model="stopTime"
           format="24hr"
+          :allowed-minutes="allowedTimes.minutes"
           autosave
         )
   v-text-field(
@@ -168,6 +170,11 @@ export default {
       timeRules: [
         (v) => !!v || 'Time is required'
       ],
+      allowedTimes: {
+        minutes: function (value) {
+          return value % 5 === 0
+        }
+      },
       startDate: this.initialStartDate || null,
       startDateMenu: false,
       startTime: this.initialStartTime || null,
