@@ -1,7 +1,7 @@
 <template lang="pug">
 v-form(v-model="valid" ref="form" lazy-validation)
   v-layout(row)
-    v-flex(xs11 sm5)
+    v-flex(xs5 sm5)
       v-menu(
         lazy
         :close-on-content-click="false"
@@ -43,7 +43,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
                   @click="save"
                 ) OK
     v-spacer
-    v-flex(xs11 sm5)
+    v-flex(xs5 sm5)
       v-menu(
         lazy
         :close-on-content-click="false"
@@ -69,7 +69,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
           autosave
         )
   v-layout(row)
-    v-flex(xs11 sm5)
+    v-flex(xs5 sm5)
       v-menu(
         lazy
         :close-on-content-click="false"
@@ -111,7 +111,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
                   @click="save"
                 ) OK
     v-spacer
-    v-flex(xs11 sm5)
+    v-flex(xs5 sm5)
       v-menu(
         lazy
         :close-on-content-click="false"
