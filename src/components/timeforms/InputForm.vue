@@ -138,7 +138,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
         )
   v-text-field(
     label="Duration"
-    v-model="secondsToTime"
+    v-model="formatTime"
     readonly
   )
   v-btn(
@@ -173,20 +173,22 @@ export default {
       stopDate: this.initialstopDate || null,
       stopDateMenu: false,
       stopTime: this.initialstopTime || null,
-      stopTimeMenu: false,
-      totalDuration: '600'
+      stopTimeMenu: false
     }
   },
   computed: {
     duration () {
-      let startDate = this.startDate + ' ' + this.startTime
-      let stopDate = this.stopDate + ' ' + this.stopTime
-      this.totalDuration = (new Date(stopDate) - new Date(startDate)) / 1000
+      if (this.startDate && this.startTime && this.stopDate && this.stopTime) {
+        let startDate = this.startDate + ' ' + this.startTime
+        let stopDate = this.stopDate + ' ' + this.stopTime
+        return (new Date(stopDate) - new Date(startDate)) / 1000
+      }
+      return '0'
     },
-    secondsToTime () {
-      let hours = Math.floor(this.totalDuration / 3600)
-      let minutes = Math.floor(this.totalDuration % 3600 / 60)
-      let seconds = Math.floor(this.totalDuration % 3600 % 60)
+    formatTime () {
+      let hours = Math.floor(this.duration / 3600)
+      let minutes = Math.floor(this.duration % 3600 / 60)
+      let seconds = Math.floor(this.duration % 3600 % 60)
       if (hours < 10) { hours = '0' + hours }
       if (minutes < 10) { minutes = '0' + minutes }
       if (seconds < 10) { seconds = '0' + seconds }
