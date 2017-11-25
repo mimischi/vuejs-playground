@@ -10,12 +10,15 @@
     template(slot='items' slot-scope='props')
       td
         v-checkbox(primary hide-details v-model='props.selected')
-      td(class='text-cs-right') {{ props.item.start }}
-      td(class='text-cs-right') {{ props.item.stop }}
-      td(class='text-cs-right') {{ props.item.contract | filterValue }}
+      td(class='text-cs-right') {{ props.item.start | formatDateTimeLocale }}
+      td(class='text-cs-right') {{ props.item.stop | formatDateTimeLocale }}
+      td(class='text-cs-right') {{ props.item.duration | formatTime }}
+      td(class='text-cs-right') {{ props.item.contract | formatValue }}
 </template>
 
 <script>
+import { formatDate } from '../mixins/formatDate'
+
 export default {
   name: 'ShiftTable',
   props: [
@@ -24,9 +27,10 @@ export default {
     'selected'
   ],
   filters: {
-    filterValue: function (value) {
+    formatValue (value) {
       return value || '-'
     }
-  }
+  },
+  mixins: [formatDate]
 }
 </script>

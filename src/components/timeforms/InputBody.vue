@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     shift-table(:selected="selected", :headers="headers", :items="items")
-    input-form
+    input-form(v-on:addItem="addNewItem")
 </template>
 
 <script>
@@ -26,6 +26,11 @@ export default {
           value: 'stop'
         },
         {
+          text: 'Duration',
+          align: 'left',
+          value: 'duration'
+        },
+        {
           text: 'Contract',
           align: 'left',
           value: 'contract'
@@ -34,14 +39,16 @@ export default {
       items: [
         {
           id: 1,
-          start: '10 Nov 2017 08:30:15 GMT',
-          stop: '10 Nov 2017 12:15:00 GMT',
+          start: '1511627921806',
+          stop: '1511627921806',
+          duration: '600',
           contract: 'Uni'
         },
         {
           id: 2,
-          start: '11 Nov 2017 12:00:00 GMT',
-          stop: '11 Nov 2017 16:15:12 GMT',
+          start: '1511627921806',
+          stop: '1511627921806',
+          duration: '300',
           contract: ''
         }
       ]
@@ -50,6 +57,12 @@ export default {
   components: {
     InputForm,
     ShiftTable
+  },
+  methods: {
+    addNewItem (data) {
+      data['id'] = this.items[this.items.length - 1].id + 1
+      this.items.push(data)
+    }
   }
 }
 </script>

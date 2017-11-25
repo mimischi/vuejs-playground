@@ -138,7 +138,7 @@ v-form(v-model="valid" ref="form" lazy-validation)
         )
   v-text-field(
     label="Duration"
-    v-model="formatTime"
+    v-model="formattedDuration"
     readonly
   )
   v-btn(
@@ -149,6 +149,8 @@ v-form(v-model="valid" ref="form" lazy-validation)
 </template>
 
 <script>
+import { formatDate } from '../mixins/formatDate'
+
 export default {
   name: 'InputForm',
   props: [
@@ -185,30 +187,26 @@ export default {
       }
       return '0'
     },
-    formatTime () {
-      let hours = Math.floor(this.duration / 3600)
-      let minutes = Math.floor(this.duration % 3600 / 60)
-      let seconds = Math.floor(this.duration % 3600 % 60)
-      if (hours < 10) { hours = '0' + hours }
-      if (minutes < 10) { minutes = '0' + minutes }
-      if (seconds < 10) { seconds = '0' + seconds }
-      return `${hours}:${minutes}:${seconds}`
+    formattedDuration () {
+      return this.$options.filters.formatTime(this.duration)
     }
   },
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        console.log('HOORAY! FORM IS VALID!!')
-        console.log(`
-          Start: ${this.startDate}, ${this.startTime}
-          Stop: ${this.stopDate}, ${this.stopTime}
-        `)
+        const data = {
+          start: new Date(this.startDate + ' ' + this.startTime).getTime(),
+          stop: new Date(this.stopDate + ' ' + this.stopTime).getTime(),
+          duration: this.duration
+        }
+        this.$emit('addItem', data)
       }
     },
     clear () {
       console.log('Resetting the form!')
       this.$refs.form.reset()
     }
-  }
+  },
+  mixins: [formatDate]
 }
 </script>
